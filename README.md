@@ -27,4 +27,4 @@
   ...
   ```
   
-### Membuat aplikasi dengan nama main pada proyek tersebut.
+* Membuat aplikasi dengan nama main pada proyek tersebut.
