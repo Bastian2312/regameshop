@@ -143,3 +143,23 @@
 ### Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 
 ![alt text](https://cdn.discordapp.com/attachments/817682466965553152/1282744872079458375/image.png?ex=66e078c1&is=66df2741&hm=17a91b7001c97bf72368e7c8f71c3afc579bdcc4fac11e6da448d840d4585e2a&)
+
+Pada aplikasi Django, client request diarahkan oleh urls.py ke views.py yang memproses logika bisnis, mengambil data dari models.py jika diperlukan, lalu merender respon melalui berkas HTML untuk ditampilkan kembali ke client.
+
+
+
+### Jelaskan fungsi git dalam pengembangan perangkat lunak!
+
+Git adalah sistem kontrol versi terdistribusi yang digunakan dalam pengembangan perangkat lunak untuk melacak perubahan kode, memungkinkan kolaborasi antar pengembang, mengelola berbagai versi kode, dan memfasilitasi pemulihan jika terjadi kesalahan, sehingga mempermudah pengelolaan proyek secara terorganisir dan efisien.
+
+
+
+### Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
+
+karena framework ini menawarkan struktur yang jelas dan lengkap, mencakup banyak fitur "out of the box" seperti autentikasi, manajemen database, dan routing URL, sehingga memungkinkan pemula untuk fokus pada logika aplikasi tanpa harus mengatur komponen-komponen dasar dari awal. Django juga menggunakan bahasa pemrograman python yang populer dengan pengguna2 pemula
+
+
+
+### Mengapa model pada Django disebut sebagai ORM?
+
+Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django menggunakan pendekatan ini untuk memetakan objek-objek Python (model) ke tabel-tabel dalam database relasional. Dengan ORM, pengembang dapat berinteraksi dengan database menggunakan kode Python, tanpa perlu menulis SQL secara langsung. ORM memungkinkan Django untuk mengelola operasi database seperti pembuatan, pembacaan, pembaruan, dan penghapusan data melalui objek-objek Python, sehingga memudahkan manipulasi data dalam aplikasi.
