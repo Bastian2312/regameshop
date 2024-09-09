@@ -6,6 +6,5 @@ class ProductEntry(models.Model):
     price = models.IntegerField()
     quantity = models.IntegerField()
 
-    @property
-    def is_mood_strong(self):
-        return self.mood_intensity > 5
+    def __str__(self):
+        return self.name
