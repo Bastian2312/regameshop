@@ -1,6 +1,7 @@
 # Bastian Adiputra Siregar
 ## Tugas 2
 
+[Website](http://bastian-adiputra-regameshop.pbp.cs.ui.ac.id/)
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 * Membuat sebuah proyek Django baru.
 
