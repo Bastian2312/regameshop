@@ -166,7 +166,185 @@ karena framework ini menawarkan struktur yang jelas dan lengkap, mencakup banyak
 Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django menggunakan pendekatan ini untuk memetakan objek-objek Python (model) ke tabel-tabel dalam database relasional. Dengan ORM, pengembang dapat berinteraksi dengan database menggunakan kode Python, tanpa perlu menulis SQL secara langsung. ORM memungkinkan Django untuk mengelola operasi database seperti pembuatan, pembacaan, pembaruan, dan penghapusan data melalui objek-objek Python, sehingga memudahkan manipulasi data dalam aplikasi.
 
 
-
-
-
 ## Tugas 3
+
+
+###  Membuat input form untuk menambahkan objek model pada app sebelumnya.
+
+* Implementasi Skeleton sebagai Kerangka Views
+  Buat direktori templates pada direktori utama (root folder) dan buatlah sebuah berkas HTML baru bernama base.html.
+  Isilah berkas base.html tersebut dengan kode berikut:
+  ```
+  {% load static %}
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      {% block meta %} {% endblock meta %}
+    </head>
+  
+    <body>
+      {% block content %} {% endblock content %}
+    </body>
+  </html>
+  ```
+
+  Sesuaikan kode dalam settings.py dalam direktori proyek dengan potongan kode berikut
+  ```
+  ...
+  TEMPLATES = [
+      {
+          'BACKEND': 'django.template.backends.django.DjangoTemplates',
+          'DIRS': [BASE_DIR / 'templates'], # Tambahkan konten baris ini
+          'APP_DIRS': True,
+          ...
+      }
+  ]
+  ...
+  ```
+
+  ubahlah kode berkas main.html menjadi sebagai berikut
+  ```
+  {% extends 'base.html' %}
+  {% block content %}
+  <h1>Project Name</h1>
+  
+  <h5>NPM: </h5>
+  <p>{{ npm }}<p>
+  
+  <h5>Name:</h5>
+  <p>{{ name }}</p>
+  
+  <h5>Class:</h5>
+  <p>{{ class }}</p>
+  {% endblock content %}
+  ```
+
+  Buat berkas baru pada direktori main dengan nama forms.py untuk membuat struktur form
+  ```
+  from django.forms import ModelForm
+  from main.models import ProductEntry
+  
+  class ProductEntryForm(ModelForm):
+      class Meta:
+          model = ProductEntry
+          fields = ["name","description", "price", "quantity"]
+  ```
+
+  dalam views.py dalam direktori main tambahkan beberapa import berikut
+  ```
+  from django.shortcuts import render, redirect
+  from main.forms import ProductEntryForm
+  from main.models import ProductEntry
+  ```
+
+  buat fungsi baru dengan nama create_product_entry yang menerima parameter request yang dapat menambahkan data Product Entry secara otomatis ketika data di-submit dari form.
+  ```
+  def create_product_entry(request):
+    form = ProductEntryForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return redirect('main:show_main')
+
+    context = {'form': form}
+    return render(request, "create_product_entry.html", context)
+  ```
+
+  Ubahlah fungsi show_main yang sudah ada pada file views.py
+  ```
+  def show_main(request):
+    mood_entries = ProductEntry.objects.all()
+
+    context = {
+        'name': 'Bastian Adiputra Siregar',
+        'class': 'PBP D',
+        'npm': '2306245005',
+        'product_entries':product_entries
+    }
+
+    return render(request, "main.html", context)
+  ```
+
+  import fungsi create_product_entry dalam file urls.py pada directory main
+  ```
+  from main.views import show_main, create_product_entry
+  ```
+
+  tambahkan path URL ke dalam variabel urlpatterns pada urls.py
+  ```
+  path('create-product-entry', create_product_entry, name='create-product-entry'),
+  ```
+
+  Buat file HTML baru dengan nama create_product_entry.html pada direktori main/templates. Lalu isi dengan kode berikut
+  ```
+  {% extends 'base.html' %} 
+  {% block content %}
+  <h1>Add New Product Entry</h1>
+  
+  <form method="POST">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td></td>
+        <td>
+          <input type="submit" value="Add Product" />
+        </td>
+      </tr>
+    </table>
+  </form>
+  
+  {% endblock %}
+  ```
+
+  Buka main.html dan tambahkan kode berikut di dalam {% block content %} untuk menampilkan data product
+  ```
+  {% extends 'base.html' %}
+  {% block content %}
+  <h1>RegameShop</h1>
+  
+  <h5>NPM: </h5>
+  <p>{{ npm }}<p>
+  
+  <h5>Name:</h5>
+  <p>{{ name }}</p>
+  
+  <h5>Class:</h5>
+  <p>{{ class }}</p>
+  
+  {% if not product_entries %}
+  <p>Belum ada data product pada RegameShop.</p>
+  {% else %}
+  <table>
+    <tr>
+      <th>Product Name</th>
+      <th>Time</th>
+      <th>description</th>
+      <th>price</th>
+      <th>quantity</th>
+    </tr>
+  
+    {% comment %} Berikut cara memperlihatkan product di bawah baris ini 
+    {% endcomment %} 
+    {% for product_entry in product_entries %}
+    <tr>
+      <td>{{product_entry.name}}</td>
+      <td>{{product_entry.time}}</td>
+      <td>{{product_entry.description}}</td>
+      <td>{{product_entry.price}}</td>
+      <td>{{product_entry.quantity}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+  
+  <br />
+  
+  <a href="{% url 'main:create-product-entry' %}">
+    <button>Add New Product Entry</button>
+  </a>
+  {% endblock content %}
+  ```
+   
