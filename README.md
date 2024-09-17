@@ -440,4 +440,16 @@ Menurut saya antara XML dan JSON, JSON lebih unggul karena alsan tersebut yaitu 
 
 Method is_valid() pada form di Django digunakan untuk memeriksa apakah data yang dikirimkan ke form sesuai dengan aturan validasi yang telah didefinisikan. Metode ini penting karena membantu kita memastikan bahwa data yang diterima aplikasi sesuai dengan format dan aturan yang benar sebelum diproses lebih lanjut.
 
-### 
+### Mengakses keempat URL menggunakan Postman
+* XML
+  ![xml](https://cdn.discordapp.com/attachments/817682466965553152/1285573577311129701/image.png?ex=66eac331&is=66e971b1&hm=60468b49f3b57422ec604c8a1c860124f708b2ca2f0033caef65ebacfb02313c&)
+
+* JSON
+  ![json](https://cdn.discordapp.com/attachments/817682466965553152/1285619660636815474/image.png?ex=66eaee1c&is=66e99c9c&hm=29b9685cd06a8b86cc7a7158d695afabe1bb8ded1090e74a347ea9b2a2ae186a&)
+
+* XML by ID
+  ![xml by id](https://cdn.discordapp.com/attachments/817682466965553152/1285619805386444821/image.png?ex=66eaee3f&is=66e99cbf&hm=43411d351276e558a96150487e75b10bdb97a34c9727a747a0f7334b9260ccdd&)
+
+* JSON by ID
+  ![json by id](https://cdn.discordapp.com/attachments/817682466965553152/1285573813450309743/image.png?ex=66eac369&is=66e971e9&hm=95974075f181a4019cbaea4c67c3ba5a9c4c0cb00f76b0c0ce393898bc433459&)
+  
