@@ -351,3 +351,54 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
   {% endblock content %}
   ```
    
+
+
+### Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
+
+* Mengembalikan Data dalam Bentuk XML, JSON
+  tambahkan import HttpResponse dan Serializer dalam views.py pada directory main
+  ```py
+  from django.http import HttpResponse
+  from django.core import serializers
+  ```
+
+  Buatlah sebuah fungsi baru yang menerima parameter request dengan nama show_xml, show_json dan buatlah sebuah variabel di dalam fungsi tersebut yang menyimpan hasil query dari seluruh data yang ada pada ProductEntry. Lalu tambahkan return function berupa HttpResponse yang berisi parameter data hasil query yang sudah diserialisasi menjadi XML/Json dan parameter content_type="application/xml" dan content_type="application/json".
+  ```py
+  def show_xml(request):
+    data = ProductEntry.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")'
+
+  def show_json(request):
+    data = ProductEntry.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+  ```
+
+
+* Mengembalikan Data Berdasarkan ID dalam Bentuk XML dan JSON
+  Tambahkan return function berupa HttpResponse yang berisi parameter data hasil query yang sudah diserialisasi menjadi JSON atau XML dan parameter content_type dengan value "application/xml"/"application/json". Pada dalamnya buatlah sebuah variabel di dalam fungsi tersebut yang menyimpan hasil query dari data dengan id tertentu yang ada pada ProductEntry.
+  ```py
+  def show_xml_by_id(request, id):
+    data = MoodEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+  def show_json_by_id(request, id):
+    data = MoodEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+  ```
+
+
+
+### Membuat routing URL untuk masing-masing views yang telah ditambahkan
+
+  Buka urls.py yang ada pada direktori main dan import fungsi yang sudah kamu buat tadi.
+  ```py
+  from main.views import show_main, create_mood_entry, show_xml, show_json, show_xml_by_id, show_json_by_id
+  ```
+
+  Tambahkan path URL ke dalam urlpatterns untuk mengakses fungsi yang sudah diimpor tadi.
+  ```py
+  path('xml/', show_xml, name='show_xml'),
+  path('json/', show_json, name='show_json'),
+  path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
+  path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
+  ```
