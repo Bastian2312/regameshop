@@ -234,6 +234,27 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
 
 
 
+* Mengubah Primary Key Dari Integer Menjadi UUID
+  Tambahkan baris ini pada berkas models.py di subdirektori main/.
+  ```py
+  import uuid
+
+  class ProductEntry(models.Model):
+      id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+      name = models.CharField(max_length=255)
+      description = models.TextField()
+      price = models.IntegerField()
+      quantity = models.IntegerField()
+  ```
+
+  Lakukan migrasi model dengan menjalankan perintah berikut.
+  ```
+  python manage.py makemigrations
+  python manage.py migrate
+  ```
+
+
+  
 * Membuat Form Input Data dan Menampilkan Data Product Entry Pada HTML
   dalam views.py dalam direktori main tambahkan beberapa import berikut
   ```py
@@ -402,3 +423,21 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
   path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
   path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
   ```
+
+### Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+
+Data delivery merupakan key element yang memungkinkan interaksi antar komponen dalam sebuah platform. Fungsi utamanya adalah memastikan bahwa aliran data antara server dan klien berjalan dengan efisien. Dalam konteks ini, data delivery berperan sebagai jembatan penghubung yang memfasilitasi komunikasi, pertukaran informasi, serta sinkronisasi proses, sehingga sistem dapat berfungsi secara optimal.
+
+### Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+
+JSON memiliki struktur yang lebih sederhana dan lebih mudah dibaca, baik oleh manusia maupun PC. JSON menggunakan format berbasis objek dengan key-value pairs yang secara intuitif lebih mudah dipahami.
+
+XML, meskipun fleksibel dan kaya fitur, memiliki sintaks yang lebih verbose dengan tag pembuka dan penutup, yang bisa membuat dokumen menjadi lebih panjang dan lebih sulit dibaca.
+
+Menurut saya antara XML dan JSON, JSON lebih unggul karena alsan tersebut yaitu JSON lebih simple dan felksibal dan XML lebih complex dan tidak se-fleksibel JSON. Karena alasa ini juga mengapa JSON lebih populer dari XML
+
+### Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+
+Method is_valid() pada form di Django digunakan untuk memeriksa apakah data yang dikirimkan ke form sesuai dengan aturan validasi yang telah didefinisikan. Metode ini penting karena membantu kita memastikan bahwa data yang diterima aplikasi sesuai dengan format dan aturan yang benar sebelum diproses lebih lanjut.
+
+### 
