@@ -22,7 +22,7 @@
   ```
 
   Tambahkan kedua string berikut pada ALLOWED_HOSTS di settings.py untuk keperluan deployment:
-  ```
+  ```py
   ...
   ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
   ...
