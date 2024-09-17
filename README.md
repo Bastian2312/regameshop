@@ -232,6 +232,9 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
           fields = ["name","description", "price", "quantity"]
   ```
 
+
+
+### Membuat Form Input Data dan Menampilkan Data Product Entry Pada HTML
   dalam views.py dalam direktori main tambahkan beberapa import berikut
   ```
   from django.shortcuts import render, redirect
