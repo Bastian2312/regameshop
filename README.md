@@ -40,7 +40,7 @@
 * Melakukan routing pada proyek agar dapat menjalankan aplikasi main.
 
   Tambahkan 'main' ke dalam daftar aplikasi yang ada sebagai elemen paling terakhir. Daftar aplikasi dapat kamu akses pada variabel INSTALLED_APPS.
-  ```
+  ```py
   INSTALLED_APPS = [
     ...,
     'main'
@@ -51,7 +51,7 @@
 * Membuat model pada aplikasi main dengan nama Product dan memiliki atribut wajib
 
   Modifikasi berkas models.py dengan kode berikut.
-  ```
+  ```py
   from django.db import models
   
   class Product(models.Model):
@@ -67,7 +67,7 @@
 * Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.
 
   Memodifikasi views.py yang terletak di dalam berkas aplikasi main.
-  ```
+  ```py
   from django.shortcuts import render
 
   def show_main(request):
@@ -81,7 +81,7 @@
   ```
 
   Buka berkas main.html yang telah dibuat sebelumnya dalam direktori templates pada direktori main dan modifikasi dengan code berikut.
-  ```
+  ```html
   ...
   <h5>NPM: </h5>
   <p>{{ npm }}<p>
@@ -96,7 +96,7 @@
 * Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
 
   Modifikasi urls.py pada direktori main
-  ```
+  ```py
   from django.urls import path
   from main.views import show_main
   
@@ -108,7 +108,7 @@
   ```
 
   Modifikasi urls.py pada direktori proyek
-  ```
+  ```py
   from django.contrib import admin
   from django.urls import path,include
   
@@ -122,7 +122,7 @@
 * Melakukan deployment ke PWS terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
 
   Kembali ke settings.py, menambahkan link sesuai format pws
-  ```
+  ```py
   # URL deployment PWS memiliki format <username-sso>-<nama proyek>.pbp.cs.ui.ac.id.
   ALLOWED_HOSTS = ["127.0.0.1", "localhost", "<URL LINK>"]
   ```
@@ -174,7 +174,7 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
 * Implementasi Skeleton sebagai Kerangka Views
   Buat direktori templates pada direktori utama (root folder) dan buatlah sebuah berkas HTML baru bernama base.html.
   Isilah berkas base.html tersebut dengan kode berikut:
-  ```
+  ```html
   {% load static %}
   <!DOCTYPE html>
   <html lang="en">
@@ -191,7 +191,7 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
   ```
 
   Sesuaikan kode dalam settings.py dalam direktori proyek dengan potongan kode berikut
-  ```
+  ```py
   ...
   TEMPLATES = [
       {
@@ -205,7 +205,7 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
   ```
 
   ubahlah kode berkas main.html menjadi sebagai berikut
-  ```
+  ```html
   {% extends 'base.html' %}
   {% block content %}
   <h1>Project Name</h1>
@@ -222,7 +222,7 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
   ```
 
   Buat berkas baru pada direktori main dengan nama forms.py untuk membuat struktur form
-  ```
+  ```py
   from django.forms import ModelForm
   from main.models import ProductEntry
   
@@ -236,14 +236,14 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
 
 * Membuat Form Input Data dan Menampilkan Data Product Entry Pada HTML
   dalam views.py dalam direktori main tambahkan beberapa import berikut
-  ```
+  ```py
   from django.shortcuts import render, redirect
   from main.forms import ProductEntryForm
   from main.models import ProductEntry
   ```
 
   buat fungsi baru dengan nama create_product_entry yang menerima parameter request yang dapat menambahkan data Product Entry secara otomatis ketika data di-submit dari form.
-  ```
+  ```py
   def create_product_entry(request):
     form = ProductEntryForm(request.POST or None)
 
@@ -256,7 +256,7 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
   ```
 
   Ubahlah fungsi show_main yang sudah ada pada file views.py
-  ```
+  ```py
   def show_main(request):
     mood_entries = ProductEntry.objects.all()
 
@@ -271,17 +271,17 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
   ```
 
   import fungsi create_product_entry dalam file urls.py pada directory main
-  ```
+  ```py
   from main.views import show_main, create_product_entry
   ```
 
   tambahkan path URL ke dalam variabel urlpatterns pada urls.py
-  ```
+  ```py
   path('create-product-entry', create_product_entry, name='create-product-entry'),
   ```
 
   Buat file HTML baru dengan nama create_product_entry.html pada direktori main/templates. Lalu isi dengan kode berikut
-  ```
+  ```html
   {% extends 'base.html' %} 
   {% block content %}
   <h1>Add New Product Entry</h1>
@@ -303,7 +303,7 @@ Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django 
   ```
 
   Buka main.html dan tambahkan kode berikut di dalam {% block content %} untuk menampilkan data product
-  ```
+  ```html
   {% extends 'base.html' %}
   {% block content %}
   <h1>RegameShop</h1>
