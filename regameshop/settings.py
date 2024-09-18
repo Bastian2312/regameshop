@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "bastian-adiputra-regameshop.pbp.cs.ui.ac.id"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost",
+    "http://127.0.0.1",
+    "http://bastian-adiputra-regameshop.pbp.cs.ui.ac.id",
+    "https://bastian-adiputra-regameshop.pbp.cs.ui.ac.id",
+]
 
 # Application definition
 
