@@ -651,3 +651,16 @@ python manage.py migrate
 ### Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
 
 ![alt text](https://cdn.discordapp.com/attachments/817682466965553152/1288155565729775627/image.png?ex=66f427db&is=66f2d65b&hm=237f0d0f9bf0231847982a44cc183e38322d7eca495e6bdf83706874008b71e1&)
+
+### Apa perbedaan antara HttpResponseRedirect() dan redirect()
+Dalam kasus HttpResponseRedirect argumen pertama hanya dapat berupa url, sedangkan redirect pada akhirnya akan mengembalikan HttpResponseRedirect tetapi dapat menerima model, view, atau url sebagai argumen. Sehingga, redirect() lebih fleksibel dalam hal apa yang bisa "dialihkan".
+
+### Jelaskan cara kerja penghubungan model Product dengan User!
+
+Authentication merupakan proses untuk memverifikasi identitas pengguna, sedangkan Authorization adalah proses untuk memverifikasi hak akses pengguna. Dalam Django, kedua konsep ini diimplementasikan dengan cara yang berbeda. Otentikasi di Django dilakukan melalui model User dan metode bawaan seperti login, logout, dan authenticate. Sementara itu, otorisasi di Django diterapkan menggunakan decorators seperti login_required(), yang berfungsi untuk membatasi akses hanya bagi pengguna yang telah di authenticate.
+
+### Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+
+Django mengingat pengguna yang telah login dengan menggunakan sessions dan cookies. Saat pengguna berhasil login, Django membuat sesi yang menyimpan informasi pengguna, seperti ID pengguna, di server. Setiap sesi diidentifikasi dengan ID sesi yang unik. Django kemudian mengirimkan cookie ke browser pengguna yang berisi ID sesi tersebut. Cookie ini akan dikirimkan kembali ke server dengan setiap permintaan yang dilakukan oleh pengguna, memungkinkan Django untuk mengenali pengguna yang sama dan menjaga status login mereka.
+
+Cookies juga memiliki berbagai kegunaan lainnya, seperti menyimpan preferensi pengguna atau menyimpan informasi tentang barang-barang yang ditambahkan ke cart belanja dalam aplikasi e-commerce. Namun, tidak semua cookies aman digunakan. Ada beberapa pertimbangan terkait keamanan cookies, seperti perbedaan antara cookies sesi dan cookies persisten, risiko pencurian cookies jika tidak dilindungi dengan baik, serta pentingnya menggunakan atribut SameSite untuk melindungi dari serangan CSRF.
