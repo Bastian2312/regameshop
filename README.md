@@ -452,4 +452,202 @@ Method is_valid() pada form di Django digunakan untuk memeriksa apakah data yang
 
 * JSON by ID
   ![json by id](https://cdn.discordapp.com/attachments/817682466965553152/1285573813450309743/image.png?ex=66eac369&is=66e971e9&hm=95974075f181a4019cbaea4c67c3ba5a9c4c0cb00f76b0c0ce393898bc433459&)
-  
+
+
+## Tugas 4
+
+
+### Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+
+Pada views.py dalam subdirektori main, tambahkan imports berikut
+
+```py
+from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+```
+
+Tambahkan method login, logout, register pada views.py
+
+login
+```py
+def login_user(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+
+        if form.is_valid():    # Ambil user, lalu login sebagai user
+            user = form.get_user()
+            login(request, user)
+            response = HttpResponseRedirect(reverse("main:show_main"))
+            response.set_cookie('last_login', str(datetime.datetime.now())) # Set cookie last_login
+            return response
+
+    else:
+        form = AuthenticationForm(request)
+    context = {'form': form}
+    return render(request, 'login.html', context)
+```
+
+logout
+```py
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
+```
+
+register
+```py
+def register(request):
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():    # Menyimpan data dari form jika valid
+            form.save()
+            messages.success(request, 'Your account has been successfully created!')
+            return redirect('main:login')
+    context = {'form':form}
+    return render(request, 'register.html', context)
+```
+
+Update show_main dan create_product_entry dengan code berikut
+
+show_main
+```py
+def show_main(request):
+    product_entries = Product.objects.filter(user=request.user)    # Filter sesuai user yang memberi request
+
+    context = {
+        'app' : 'Chicken-Daddy',
+        'name': request.user.username,    # Menunjukkan username user yang membuat request pada field name
+        'class': 'PBP D',
+        'products': product_entries,
+        'last_login': request.COOKIES['last_login'],    # Menunjukkan last_login yang diambil dari cookie
+    }
+
+    return render(request, "main.html", context)
+```
+
+create_product_entry
+```py
+def create_product_entry(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        product_entry = form.save(commit=False)    # mendapatkan model
+        product_entry.user = request.user    # menambahkan data terhadap model tersebut
+        product_entry.save()    # menyimpan model
+        return redirect('main:show_main')
+    
+    context = {'form' : form}
+    return render(request, "create_product_entry.html", context)
+```
+
+Dalam folder templates pada folder main, buatlah fuile login.html & register.html
+
+login.html
+```html
+<!-- login.html -->
+{% extends 'base.html' %}
+{% block meta %}
+<title>Login</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="login">
+  <h1>Login</h1>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td></td>
+        <td><input class="btn login_btn" type="submit" value="Login" /></td>
+      </tr>
+    </table>
+  </form>
+
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %} Don't have an account yet?
+  <a href="{% url 'main:register' %}">Register Now</a>
+</div>
+
+{% endblock content %}
+```
+
+register.html
+```py
+<!-- register.html -->
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Register</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div class="login">
+  <h1>Register</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td></td>
+        <td><input type="submit" name="submit" value="Daftar" /></td>
+      </tr>
+    </table>
+  </form>
+
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+{% endblock content %}
+```
+
+
+### Menghubungkan model Product dengan User.
+
+Update models.py dengan code berikut
+```py
+from django.db import models
+from django.contrib.auth.models import User
+import uuid
+
+# Create your models here.
+class Product(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)    # Menambah line ini
+    name = models.CharField(max_length=255)
+    price = models.IntegerField()
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+```
+
+buatlah minimal 1 akun terlebuh dahulu, lalu lakukan migration
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+
+![alt text](https://cdn.discordapp.com/attachments/817682466965553152/1288155565729775627/image.png?ex=66f427db&is=66f2d65b&hm=237f0d0f9bf0231847982a44cc183e38322d7eca495e6bdf83706874008b71e1&)
