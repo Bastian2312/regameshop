@@ -442,16 +442,16 @@ Method is_valid() pada form di Django digunakan untuk memeriksa apakah data yang
 
 ### Mengakses keempat URL menggunakan Postman
 * XML
-  ![xml](https://cdn.discordapp.com/attachments/817682466965553152/1285573577311129701/image.png?ex=66eac331&is=66e971b1&hm=60468b49f3b57422ec604c8a1c860124f708b2ca2f0033caef65ebacfb02313c&)
+  ![xml](https://cdn.discordapp.com/attachments/817682466965553152/1285573577311129701/image.png?ex=66f3fdb1&is=66f2ac31&hm=1ee0638ebc1d7bd7695a1b801643735feeed09745e11909308d13d21c2f62a65&)
 
 * JSON
   ![json](https://cdn.discordapp.com/attachments/817682466965553152/1285619660636815474/image.png?ex=66eaee1c&is=66e99c9c&hm=29b9685cd06a8b86cc7a7158d695afabe1bb8ded1090e74a347ea9b2a2ae186a&)
 
 * XML by ID
-  ![xml by id](https://cdn.discordapp.com/attachments/817682466965553152/1285619805386444821/image.png?ex=66eaee3f&is=66e99cbf&hm=43411d351276e558a96150487e75b10bdb97a34c9727a747a0f7334b9260ccdd&)
+  ![xml by id](https://cdn.discordapp.com/attachments/817682466965553152/1285619805386444821/image.png?ex=66f37fff&is=66f22e7f&hm=1b0a7f92eeece1c6e6ee90d9d491afb1b9123169454e913ba9a2af8f74e8b2f6&)
 
 * JSON by ID
-  ![json by id](https://cdn.discordapp.com/attachments/817682466965553152/1285573813450309743/image.png?ex=66eac369&is=66e971e9&hm=95974075f181a4019cbaea4c67c3ba5a9c4c0cb00f76b0c0ce393898bc433459&)
+  ![json by id](https://cdn.discordapp.com/attachments/817682466965553152/1285573813450309743/image.png?ex=66f3fde9&is=66f2ac69&hm=c91ae5c5227b7c4ecc33df4c0b615069bd2ba93ae09ad5e41b72f8dfa973fb46&)
 
 
 ## Tugas 4
