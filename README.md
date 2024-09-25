@@ -1,5 +1,5 @@
 # Bastian Adiputra Siregar
-<details><summary>## Tugas 2</summary>
+<details><summary><h2>Tugas 2</h2></summary>
 
 [Website](http://bastian-adiputra-regameshop.pbp.cs.ui.ac.id/)
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
