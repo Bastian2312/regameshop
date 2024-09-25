@@ -166,7 +166,7 @@ karena framework ini menawarkan struktur yang jelas dan lengkap, mencakup banyak
 Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django menggunakan pendekatan ini untuk memetakan objek-objek Python (model) ke tabel-tabel dalam database relasional. Dengan ORM, pengembang dapat berinteraksi dengan database menggunakan kode Python, tanpa perlu menulis SQL secara langsung. ORM memungkinkan Django untuk mengelola operasi database seperti pembuatan, pembacaan, pembaruan, dan penghapusan data melalui objek-objek Python, sehingga memudahkan manipulasi data dalam aplikasi.
 </details>
 
-## Tugas 3
+<details><summary><h2>Tugas 3</h2></summary>
 
 
 ###  Membuat input form untuk menambahkan objek model pada app sebelumnya.
@@ -452,9 +452,9 @@ Method is_valid() pada form di Django digunakan untuk memeriksa apakah data yang
 
 * JSON by ID
   ![json by id](https://cdn.discordapp.com/attachments/817682466965553152/1285573813450309743/image.png?ex=66f3fde9&is=66f2ac69&hm=c91ae5c5227b7c4ecc33df4c0b615069bd2ba93ae09ad5e41b72f8dfa973fb46&)
+</details>
 
-
-## Tugas 4
+<details><summary><h2>Tugas 4</h2></summary>
 
 
 ### Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
@@ -664,3 +664,4 @@ Authentication merupakan proses untuk memverifikasi identitas pengguna, sedangka
 Django mengingat pengguna yang telah login dengan menggunakan sessions dan cookies. Saat pengguna berhasil login, Django membuat sesi yang menyimpan informasi pengguna, seperti ID pengguna, di server. Setiap sesi diidentifikasi dengan ID sesi yang unik. Django kemudian mengirimkan cookie ke browser pengguna yang berisi ID sesi tersebut. Cookie ini akan dikirimkan kembali ke server dengan setiap permintaan yang dilakukan oleh pengguna, memungkinkan Django untuk mengenali pengguna yang sama dan menjaga status login mereka.
 
 Cookies juga memiliki berbagai kegunaan lainnya, seperti menyimpan preferensi pengguna atau menyimpan informasi tentang barang-barang yang ditambahkan ke cart belanja dalam aplikasi e-commerce. Namun, tidak semua cookies aman digunakan. Ada beberapa pertimbangan terkait keamanan cookies, seperti perbedaan antara cookies sesi dan cookies persisten, risiko pencurian cookies jika tidak dilindungi dengan baik, serta pentingnya menggunakan atribut SameSite untuk melindungi dari serangan CSRF.
+</details>
