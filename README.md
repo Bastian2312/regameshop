@@ -1,5 +1,5 @@
 # Bastian Adiputra Siregar
-## Tugas 2
+<details><summary>## Tugas 2</summary>
 
 [Website](http://bastian-adiputra-regameshop.pbp.cs.ui.ac.id/)
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
@@ -164,7 +164,7 @@ karena framework ini menawarkan struktur yang jelas dan lengkap, mencakup banyak
 ### Mengapa model pada Django disebut sebagai ORM?
 
 Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena Django menggunakan pendekatan ini untuk memetakan objek-objek Python (model) ke tabel-tabel dalam database relasional. Dengan ORM, pengembang dapat berinteraksi dengan database menggunakan kode Python, tanpa perlu menulis SQL secara langsung. ORM memungkinkan Django untuk mengelola operasi database seperti pembuatan, pembacaan, pembaruan, dan penghapusan data melalui objek-objek Python, sehingga memudahkan manipulasi data dalam aplikasi.
-
+</details>
 
 ## Tugas 3
 
