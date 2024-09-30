@@ -1,0 +1,87 @@
+.form-style form input, form textarea, form select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #bcbcbc;
+    border-radius: 0.375rem;
+}
+.form-style form input:focus, form textarea:focus, form select:focus {
+    outline: none;
+    border-color: #674ea7;
+    box-shadow: 0 0 0 3px #674ea7;
+}
+@keyframes shine {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+.animate-shine {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.3));
+    background-size: 200% 100%;
+    animation: shine 3s infinite;
+}
+
+.login {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}
+
+.login h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.login_btn {
+    background-color: #674ea7;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.login_btn:hover {
+    background-color: #5b3e9a;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login form input, 
+.login form textarea, 
+.login form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #bcbcbc;
+    border-radius: 0.375rem;
+    transition: border-color 0.3s ease;
+}
+
+.login form input:focus, 
+.login form textarea:focus, 
+.login form select:focus {
+    border-color: #674ea7;
+    box-shadow: 0 0 0 3px rgba(103, 78, 167, 0.4);
+}
+
+.login a {
+    display: block;
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #674ea7;
+    text-decoration: none;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
