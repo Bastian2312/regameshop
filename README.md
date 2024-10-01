@@ -666,98 +666,23 @@ Django mengingat pengguna yang telah login dengan menggunakan sessions dan cooki
 Cookies juga memiliki berbagai kegunaan lainnya, seperti menyimpan preferensi pengguna atau menyimpan informasi tentang barang-barang yang ditambahkan ke cart belanja dalam aplikasi e-commerce. Namun, tidak semua cookies aman digunakan. Ada beberapa pertimbangan terkait keamanan cookies, seperti perbedaan antara cookies sesi dan cookies persisten, risiko pencurian cookies jika tidak dilindungi dengan baik, serta pentingnya menggunakan atribut SameSite untuk melindungi dari serangan CSRF.
 </details>
 
-###  Implementasikan fungsi untuk menghapus dan mengedit product.
+###  Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
 
-Buka views.py yang ada pada subdirektori main, dan buatlah fungsi baru bernama edit_product dan delete_product
-```py
-def edit_product(request, id):
-    # Get mood entry berdasarkan id
-    product = ProductEntry.objects.get(pk = id)
-
-    # Set mood entry sebagai instance dari form
-    form = ProductEntryForm(request.POST or None, instance=product)
-
-    if form.is_valid() and request.method == "POST":
-        # Simpan form dan kembali ke halaman awal
-        form.save()
-        return HttpResponseRedirect(reverse('main:show_main'))
-
-    context = {'form': form}
-    return render(request, "edit_product.html", context)
-```
-
-```py
-def delete_product(request, id):
-    # Get mood berdasarkan id
-    product = ProductEntry.objects.get(pk = id)
-    # Hapus mood
-    product.delete()
-    # Kembali ke halaman awal
-    return HttpResponseRedirect(reverse('main:show_main'))
-```
-
-Tambahkan import pada file views.py
-```py
-from django.shortcuts import .., reverse
-```
-
-Buatlah berkas HTML baru dengan nama edit_product.html pada subdirektori main/templates. 
-```html
-{% extends 'base.html' %}
-
-{% load static %}
-
-{% block content %}
-
-<h1>Edit Mood</h1>
-
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Edit Mood"/>
-            </td>
-        </tr>
-    </table>
-</form>
-
-{% endblock %}
-```
-
-Buka urls.py yang berada pada direktori main dan import fungsi edit_product dan delete_product yang sudah dibuat.
-```py
-from main.views import edit_mood, delete_product
-...
-
-urlpatterns = [
-  ...
-  path('edit-product/<uuid:id>', edit_product, name='edit_product'),
-  path('delete/<uuid:id>', delete_product, name='delete_product'),
-]
-```
-
-Buka main.html yang berada pada subdirektori main/templates. Tambahkan potongan kode berikut sejajar dengan elemen <td> terakhir.
-```html
-...
-<tr>
-    ...
-    <td>
-        <a href="{% url 'main:edit_mood' mood_entry.pk %}">
-            <button>
-                Edit
-            </button>
-        </a>
-    </td>
-    <td>
-        <a href="{% url 'main:delete_mood' mood_entry.pk %}">
-            <button>
-                Delete
-            </button>
-        </a>
-    </td>
-</tr>
-...
-```
+Setiap selector pada CSS ada tempatnya dalam hierarki specifity, ada 4 kategori yang nge-define specifity level dari selector:
+1. Inline styles
+   ```
+   <h1 style="color: pink;">
+   ```
+2. IDs
+   ```
+   #navbar
+   ```
+3. Classes, pseudo-classes, attribute selectors
+   ```
+   .test, :hover, [href]
+   ```
+4. Elements and pseudo-elements
+   ```
+   h1, ::before
+   ```
+5. The universal selector dan inherited values
