@@ -666,7 +666,7 @@ Django mengingat pengguna yang telah login dengan menggunakan sessions dan cooki
 Cookies juga memiliki berbagai kegunaan lainnya, seperti menyimpan preferensi pengguna atau menyimpan informasi tentang barang-barang yang ditambahkan ke cart belanja dalam aplikasi e-commerce. Namun, tidak semua cookies aman digunakan. Ada beberapa pertimbangan terkait keamanan cookies, seperti perbedaan antara cookies sesi dan cookies persisten, risiko pencurian cookies jika tidak dilindungi dengan baik, serta pentingnya menggunakan atribut SameSite untuk melindungi dari serangan CSRF.
 </details>
 
-<details><summary><h2>Tugas 2</h2></summary>
+<details><summary><h2>Tugas 5</h2></summary>
   
 ###  Implementasikan fungsi untuk menghapus dan mengedit product.
 Buka views.py yang ada pada subdirektori main, dan buatlah fungsi baru bernama edit_product dan delete_product
