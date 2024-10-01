@@ -773,3 +773,47 @@ Setiap selector pada CSS ada tempatnya dalam hierarki specifity, ada 5 kategori 
 Responsive web design merupakan desain situs web yang dapat beradaptasi dan merespon perubahan lebar layar sesuai dengan perangkat atau browser yang digunakan oleh users. Desain dapat secara otomatis menyesuaikan penempatan komponen agar sesuai dengan ruang yang tersedia. Jadi, ketika kita membuka web responsive melalui desktop kemudian mengubah ukuran jendela browser, maka konten website apa akan bergerak secara otomatis menyesuaikan ukuran layar perangkat yang kita atur.
 
 Salah satu web yang memiliki responsive web design adalah _youtube.com_. jika dibuka pada mobile device, search bar, navigation bar, dan hal2 lainnya di sesuain berdasarkan layar mobile. Sedangkan, _Siakng_ merupakan web yang tidak menerapkan responsive web design. Jika dibuka pake aplikasi mobile, tidak ada aspek pada siakng yang berubah/disesuaikan dengan layar yang lebih kecil
+
+###  Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+
+Margin: Ruang kosong di luar elemen, yang mengelilingi elemen dari luar. Margin digunakan untuk memberi jarak antara elemen satu dengan elemen lain.
+```html
+.contoh {
+    margin: 20px; /* Semua sisi */
+    margin-top: 10px; /* Atas */
+    margin-right: 15px; /* Kanan */
+    margin-bottom: 10px; /* Bawah */
+    margin-left: 5px; /* Kiri */
+}
+```
+
+Border: Garis yang mengelilingi elemen, berada di antara margin dan padding. Border memiliki warna, ukuran, dan gaya.
+```html
+.contoh {
+    border: 2px solid black; /* Ukuran, gaya, dan warna */
+    border-radius: 5px; /* Membuat sudut melengkung */
+}
+```
+
+Padding: Ruang kosong di dalam elemen, yang berada di antara konten elemen (seperti teks atau gambar) dan border elemen.
+```html
+.contoh {
+    padding: 10px; /* Semua sisi */
+    padding-top: 5px; /* Atas */
+    padding-right: 15px; /* Kanan */
+    padding-bottom: 5px; /* Bawah */
+    padding-left: 20px; /* Kiri */
+}
+```
+
+### Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+
+Flexbox adalah model layout satu dimensi yang digunakan untuk mengatur elemen secara horizontal atau vertikal. Flexbox dirancang untuk mendistribusikan ruang antar elemen dalam container fleksibel dan untuk meningkatkan fleksibilitas elemen tersebut dalam container.
+
+* Membuat layout yang sederhana dan responsif untuk elemen satu dimensi (baris atau kolom).
+* Untuk tata letak elemen seperti navbar, footer, atau card list.
+
+Grid Layout adalah model layout dua dimensi yang memungkinkan pengaturan elemen secara baris dan kolom. Grid lebih kompleks dibandingkan Flexbox karena dapat digunakan untuk membuat tata letak yang lebih terstruktur dan detail.
+
+* Untuk tata letak halaman yang kompleks dengan baris dan kolom, seperti layout halaman utama, gallery gambar, atau dashboard.
+* Mengatur elemen dengan presisi dalam dua dimensi (baik baris maupun kolom).
