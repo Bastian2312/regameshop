@@ -767,3 +767,9 @@ Setiap selector pada CSS ada tempatnya dalam hierarki specifity, ada 4 kategori 
    h1, ::before
    ```
 5. The universal selector dan inherited values
+
+### Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+
+Responsive web design merupakan desain situs web yang dapat beradaptasi dan merespon perubahan lebar layar sesuai dengan perangkat atau browser yang digunakan oleh users. Desain dapat secara otomatis menyesuaikan penempatan komponen agar sesuai dengan ruang yang tersedia. Jadi, ketika kita membuka web responsive melalui desktop kemudian mengubah ukuran jendela browser, maka konten website apa akan bergerak secara otomatis menyesuaikan ukuran layar perangkat yang kita atur.
+
+Salah satu web yang memiliki responsive web design adalah _youtube.com_. jika dibuka pada mobile device, search bar, navigation bar, dan hal2 lainnya di sesuain berdasarkan layar mobile. Sedangkan, _Siakng_ merupakan web yang tidak menerapkan responsive web design. Jika dibuka pake aplikasi mobile, tidak ada aspek pada siakng yang berubah/disesuaikan dengan layar yang lebih kecil
