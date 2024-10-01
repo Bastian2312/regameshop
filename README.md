@@ -749,7 +749,7 @@ Buka main.html yang berada pada subdirektori main/templates. Tambahkan potongan 
 
 ###  Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
 
-Setiap selector pada CSS ada tempatnya dalam hierarki specifity, ada 4 kategori yang nge-define specifity level dari selector:
+Setiap selector pada CSS ada tempatnya dalam hierarki specifity, ada 5 kategori yang nge-define specifity level dari selector:
 1. Inline styles
    ```
    <h1 style="color: pink;">
