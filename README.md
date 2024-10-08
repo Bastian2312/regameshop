@@ -1,7 +1,7 @@
 # Bastian Adiputra Siregar
+[Website](http://bastian-adiputra-regameshop.pbp.cs.ui.ac.id/)
 <details><summary><h2>Tugas 2</h2></summary>
 
-[Website](http://bastian-adiputra-regameshop.pbp.cs.ui.ac.id/)
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 * Membuat sebuah proyek Django baru.
 
@@ -820,3 +820,185 @@ Grid Layout adalah model layout dua dimensi yang memungkinkan pengaturan elemen 
 * Untuk tata letak halaman yang kompleks dengan baris dan kolom, seperti layout halaman utama, gallery gambar, atau dashboard.
 * Mengatur elemen dengan presisi dalam dua dimensi (baik baris maupun kolom).
 </details>
+
+### Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+
+Tambahkan kedua import2 berikut
+
+views.py
+```py
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+```
+
+urls.py
+```py
+from main.views import ..., add_product_entry_ajax
+```
+
+Buatlah fungsi baru pada views.py dengan nama add_mood_entry_ajax
+```py
+...
+@csrf_exempt
+@require_POST
+def add_product_entry_ajax(request):
+    product = strip_tags(request.POST.get("name"))
+    description = strip_tags(request.POST.get("description"))
+    price = request.POST.get("price")
+    quantity = request.POST.get("quantity")
+    user = request.user
+
+    new_product = ProductEntry(
+        name=product, description=description,
+        price=price, quantity=quantity,
+        user=user
+    )
+    new_product.save()
+
+    return HttpResponse(b"CREATED", status=201)
+    ...
+```
+
+tambahkan path url kepada urlpatterns pada urls.py
+```py
+urlpatterns = [
+    ...
+    path('create-product-entry-ajax', add_product_entry_ajax, name='add_product_entry_ajax'),
+]
+```
+
+Bukalah berkas views.py dan hapus dua baris berikut.
+```py
+product_entries = ProductEntry.objects.filter(user=request.user)
+```
+dan 
+```py
+'product_entries': product_entries,
+```
+
+Bukalah berkas views.py dan ubahlah baris pertama views untuk show_json dan show_xml dengan code berikut
+```py
+data = ProductEntry.objects.filter(user=request.user)
+```
+
+Bukalah berkas main.html. Hapus bagian block conditional product_entries untuk menampilkan card_product ketika kosong atau tidak. 
+Setelah dihapus, tambahlah potongan code berikut
+```html
+...
+<div id="product_entry_cards"></div>
+...
+```
+
+Buatlah block <script> di bagian bawah berkas kamu (sebelum {% endblock content %}) dan isilah dengan code berikut
+```html
+<script>
+  async function getProductEntries(){
+      return fetch("{% url 'main:show_json' %}").then((res) => res.json())
+  }
+  async function refreshProductEntries() {
+  document.getElementById("product_entry_cards").innerHTML = "";
+  document.getElementById("product_entry_cards").className = "";
+  const productEntries = await getProductEntries();
+  let htmlString = "";
+  let classNameString = "";
+
+  if (productEntries.length === 0) {
+    classNameString = "flex flex-col items-center justify-center min-h-[24rem] p-6";
+    htmlString = `
+        <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+            <img src="{% static 'image/sedih-banget.png' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
+            <p class="text-center text-gray-600 mt-4">Belum ada data produk pada sistem.</p>
+        </div>
+    `;
+  } else {
+    classNameString = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
+    productEntries.forEach((item) => {
+      const name = DOMPurify.sanitize(item.fields.name);
+      const description= DOMPurify.sanitize(item.fields.description);
+      htmlString += `
+      <div class="max-w-sm bg-purple-200 shadow-lg rounded-lg overflow-hidden">
+        <!-- Product Details -->
+        <div class="p-6 bg-white">
+          <h2 class="text-xl font-bold text-gray-900 mb-2">${name}</h2>
+          <p class="text-gray-700 mb-4">${description}</p>
+
+          <!-- Price and Quantity -->
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-lg font-semibold text-purple-600">$${item.fields.price}</span>
+            <span class="text-sm text-gray-500">In Stock: ${item.fields.quantity}</span>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex space-x-3">
+            <a href="/edit-product/${item.pk}" class="bg-yellow-400 hover:bg-yellow-500 text-white text-sm py-2 px-4 rounded-md transition duration-300 font-bold ease-in-out transform hover:-translate-y-1 hover:scale-105">Edit</a>
+            <a href="/delete/${item.pk}" class="bg-red-500 hover:bg-red-600 text-white text-sm py-2 px-4 rounded-md transition duration-300 font-bold ease-in-out transform hover:-translate-y-1 hover:scale-105">Delete</a>
+          </div>
+        </div>
+      </div>
+      `;
+    });
+  }
+  
+  document.getElementById("product_entry_cards").className = classNameString;
+  document.getElementById("product_entry_cards").innerHTML = htmlString;
+}
+refreshProductEntries();
+const modal = document.getElementById('crudModal');
+  const modalContent = document.getElementById('crudModalContent');
+
+  function showModal() {
+      const modal = document.getElementById('crudModal');
+      const modalContent = document.getElementById('crudModalContent');
+
+      modal.classList.remove('hidden'); 
+      setTimeout(() => {
+        modalContent.classList.remove('opacity-0', 'scale-95');
+        modalContent.classList.add('opacity-100', 'scale-100');
+      }, 50); 
+  }
+
+  function hideModal() {
+      const modal = document.getElementById('crudModal');
+      const modalContent = document.getElementById('crudModalContent');
+
+      modalContent.classList.remove('opacity-100', 'scale-100');
+      modalContent.classList.add('opacity-0', 'scale-95');
+
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 150); 
+  }
+
+  document.getElementById("cancelButton").addEventListener("click", hideModal);
+  document.getElementById("closeModalBtn").addEventListener("click", hideModal);
+
+  function addProductEntry() {
+    fetch("{% url 'main:add_product_entry_ajax' %}", {
+      method: "POST",
+      body: new FormData(document.querySelector('#productEntryForm')),
+    })
+    .then(response => refreshProductEntries())
+
+    document.getElementById("productEntryForm").reset(); 
+    document.querySelector("[data-modal-toggle='crudModal']").click();
+
+    return false;
+  }
+
+  document.getElementById("productEntryForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    addProductEntry();
+  })
+</script>
+```
+
+
+Ubahlah bagian tombol Add New Product Entry yang sudah dibuat sebelumnya. Kemudian, tambahkan tombol baru untuk melakukan penambahan data dengan AJAX.
+```html
+<a href="{% url 'main:create-product-entry' %}" class="bg-purple-400 hover:bg-purple-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 mx-4 ">
+  Add New Product Entry
+</a>
+<button data-modal-target="crudModal" data-modal-toggle="crudModal" class="btn bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
+  Add New Product Entry by AJAX
+</button>
+```
