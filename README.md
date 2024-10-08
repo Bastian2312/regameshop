@@ -821,6 +821,8 @@ Grid Layout adalah model layout dua dimensi yang memungkinkan pengaturan elemen 
 * Mengatur elemen dengan presisi dalam dua dimensi (baik baris maupun kolom).
 </details>
 
+<details><summary><h2>Tugas 2</h2></summary>
+  
 ### Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
 
 Tambahkan kedua import2 berikut
@@ -1018,3 +1020,4 @@ Kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk
 ### Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
 
 Pembersihan data input pengguna sebaiknya dilakukan di backend karena alasan keamanan, validasi ganda, konsistensi, dan interaksi multisumber. Pengguna dapat memanipulasi data yang dikirim dari frontend, sehingga jika hanya mengandalkan pembersihan di sisi klien, aplikasi akan rentan terhadap serangan seperti injeksi SQL atau XSS. Dengan melakukan validasi dan pembersihan di backend, kita dapat memastikan bahwa semua input pengguna aman dan valid sebelum diproses, menjaga konsistensi data dari berbagai sumber, serta melindungi integritas dan keamanan aplikasi secara keseluruhan.
+</details>
