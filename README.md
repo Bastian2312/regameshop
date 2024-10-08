@@ -821,7 +821,7 @@ Grid Layout adalah model layout dua dimensi yang memungkinkan pengaturan elemen 
 * Mengatur elemen dengan presisi dalam dua dimensi (baik baris maupun kolom).
 </details>
 
-<details><summary><h2>Tugas 2</h2></summary>
+<details><summary><h2>Tugas 6</h2></summary>
   
 ### Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
 
