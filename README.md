@@ -1002,3 +1002,19 @@ Ubahlah bagian tombol Add New Product Entry yang sudah dibuat sebelumnya. Kemudi
   Add New Product Entry by AJAX
 </button>
 ```
+
+### Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+
+Penggunaan JavaScript dalam pengembangan aplikasi web memberikan banyak manfaat, terutama dalam membuat situs web yang interaktif dan responsif. JavaScript memungkinkan manipulasi elemen halaman web secara real-time tanpa perlu memuat ulang halaman, sehingga meningkatkan pengalaman pengguna. Dengan kemampuannya untuk dijalankan di sisi klien (browser), JavaScript mempercepat pemrosesan tugas-tugas seperti validasi data, animasi, dan interaksi pengguna.
+
+### Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+
+Fungsi dari penggunaan await ketika menggunakan fetch() adalah untuk menunggu hingga Promise yang dikembalikan oleh fetch() selesai dieksekusi, sebelum melanjutkan ke baris kode berikutnya. fetch() secara default bersifat asinkron, sehingga ia mengembalikan Promise yang mewakili permintaan HTTP yang sedang berlangsung. Dengan menggunakan await, kita dapat "menahan" eksekusi kode selanjutnya hingga proses pengambilan data selesai, sehingga kita dapat langsung bekerja dengan hasilnya.
+
+### Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+
+Kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST karena permintaan AJAX sering kali dikirim tanpa token CSRF yang diperlukan untuk menjaga keamanan aplikasi web. Dalam konteks AJAX, jika kita tidak menggunakan decorator ini, Django akan memvalidasi token CSRF untuk setiap permintaan POST, dan jika token tidak ada atau tidak valid, permintaan tersebut akan ditolak dengan kesalahan 403 Forbidden. Dengan menambahkan csrf_exempt, kita dapat mengizinkan permintaan POST dari klien yang tidak menyertakan token CSRF, memungkinkan fungsionalitas AJAX berjalan dengan lancar tanpa mengganggu pengalaman pengguna.
+
+### Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+Pembersihan data input pengguna sebaiknya dilakukan di backend karena alasan keamanan, validasi ganda, konsistensi, dan interaksi multisumber. Pengguna dapat memanipulasi data yang dikirim dari frontend, sehingga jika hanya mengandalkan pembersihan di sisi klien, aplikasi akan rentan terhadap serangan seperti injeksi SQL atau XSS. Dengan melakukan validasi dan pembersihan di backend, kita dapat memastikan bahwa semua input pengguna aman dan valid sebelum diproses, menjaga konsistensi data dari berbagai sumber, serta melindungi integritas dan keamanan aplikasi secara keseluruhan.
